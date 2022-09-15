@@ -20,25 +20,17 @@
         // Conexión con el socket server
       const socket = io('http://localhost:8080');
 
-        /// Para emitir
-        // socket.emit('mensaje-to-server', { data });
-        
-        // Para escuchar
+        socket.on('connect',()=> {
+          console.log('conectado');
+        });
 
+
+
+
+      // Para escuchar
      socket.on('mensaje-del-server', (data) => {
           // callback a ejecutar
      });
-
-          //conexión a socket
-        //socket.on('mensaje-bienvenida',(data) => {
-        //    console.log(data);
-        //});
-
-     // setTimeout(() => {
-     //       socket.emit('mesaje-cliente',(data)=>{
-     //           console.log(data);
-     //       })
-     // }, 2000);
 
     </script>
 
