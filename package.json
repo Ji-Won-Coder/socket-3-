@@ -18,11 +18,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jvkvlls/socket-3-.git"
-  },
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/jvkvlls/socket-3-/issues"
-  },
-  "homepage": "https://github.com/jvkvlls/socket-3-#readme",
-  "description": ""
+  }
+
 }

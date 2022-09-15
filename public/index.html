@@ -4,64 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>miniCHAT</title>
-</head>
-<body class="container">
-
-    <h1 class="mt-5">MiniChat</h1>
-    <hr>
-    <form id="miFormulario">
-        <div class="row">
-            <div class="col-8">
-                <input type="text" id="txtMensaje" placeholder="Escriba AQUI!!!!!" class="form-control">
-            </div>
-            <div class="col-4">
-                <button class="btn btn-primary">
-                    Conejo
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <div class="row">
-        <div class="col">
-            <ul id="misMensajes">
-                <li>pintar</li>
-                <li>soñar</li>
-                <li>realismo</li>
-                <li>sociedad</li>
-                <li>i'm still stading</li>
-
-
-            </ul>
-        </div>
-    </div>
-
+    <title>Socket Server</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
 
+</head>
+<body class="container">
+
+    <h1 class="mt-5">Acceso denegado</h1>
+    <hr>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
+
     <script>
- 
-      const socket = io('https://sockets-server-01.herokuapp.com/?');
-     
-    
-     //Referencias elementos del DOM
-     const formulario = document.querySelector('#miFormulario');
-     const mensajes = document.querySelector('#misMensajes');     
-     const txtMensaje = document.querySelector('#txtMensaje');
-
-
-
-     formulario.addEventListener('submit',(ev) => {
-        ev.preventDefault();
-
-        const nuevoMensaje = txtMensaje.value;
         
-        socket.emit('mensaje-del-server',{text:nuevoMensaje});
+        // Conexión con el socket server
+      const socket = io('http://localhost:8080');
 
-     });
+        /// Para emitir
+        // socket.emit('mensaje-to-server', { data });
+        
+        // Para escuchar
+
      socket.on('mensaje-del-server', (data) => {
-        console.log(data);
+          // callback a ejecutar
      });
 
           //conexión a socket
