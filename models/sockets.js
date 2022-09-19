@@ -2,7 +2,7 @@
 
 class Sockets {
 
-    constructor( io ) {
+    constructor( io=String ) {
 
         this.io = io;
 

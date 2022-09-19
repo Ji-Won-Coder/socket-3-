@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-Us">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,29 +11,73 @@
 </head>
 <body class="container">
 
-    <h1 class="mt-5">Acceso denegado</h1>
+    <h1 class="mt-5">Mini chat</h1>
     <hr>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
+
+     <form action="miFormulario">
+        <div class="row">
+          <div class="col-8">
+            <input text ="text" id="txtMensaje" placeholder="Escribe AQUI!!!!!" class="form-control">      
+          </div>
+        
+          <div class="col-4">
+            <button type="submit" btn btn-primary">
+              Conejo
+            </button>
+          </div>
+        
+        
+        </div>
+
+     </form>
+
+ <div class="row">
+   <div class="col">
+     <ul id="misMensajes">
+        
+     </ul>
+   </div>
+   
+ </div>
+
 
     <script>
         
+        
         // Conexión con el socket server
-      const socket = io('http://localhost:8080');
+       
 
-        socket.on('connect',()=> {
-          console.log('conectado');
+        const formulario = document.querySelector('#miFormulario');
+        const mensajes = document.querySelector('#misMensajes');
+        const txtMensaje = document.querySelector('#txtMensajes');
+
+
+        formulario.addEvenListener('submit',(ev) => {
+          ev.preventDefault();
+
+          const texto = txtMensaje.value;
+          socket.emit('mensaje-to-server',{ texto });
+       });
+
+       socket.emit('mensaje-from-server',(data) => {
+        console.log(data);
+       });
+        
+
+        socket.on('mensaje-bienvenida',(data) => {
+          misMensajes.inneHTML +=`<li>${data.texto} <li>` 
         });
 
+       //setTimeout ( () =>{
+       //  socket.emit('mensaje-cliente',{msg:'cliente', nombre:'Marya'});
+       //},2000)
 
-
-
-      // Para escuchar
-     socket.on('mensaje-del-server', (data) => {
-          // callback a ejecutar
-     });
-
+        // Para escuchar
+        //socket.on('mensaje-del-server', (data) => {
+        //  // callback a ejecutar
+        // });
     </script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
 
 </body>
 </html>
-

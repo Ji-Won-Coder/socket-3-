@@ -4,7 +4,6 @@ const http     = require('http');
 const socketio = require('socket.io');
 const path     = require('path');
 const cors     = require('cors');
-
 const Sockets  = require('./sockets');
 
 class Server {
@@ -12,7 +11,7 @@ class Server {
     constructor() {
 
         this.app  = express();
-        this.port = process.env.PORT;
+        this.port = 8080; //process.env.PORT
 
         // Http server
         this.server = http.createServer( this.app );
@@ -31,7 +30,7 @@ class Server {
     }
 
     // Esta configuración se puede tener aquí o como propieda de clase
-    // depende mucho de lo que necesites
+    // depende  de lo que necesite
     configurarSockets() {
         new Sockets( this.io );
     }
@@ -50,7 +49,9 @@ class Server {
         });
     }
 
+    
+
 }
 
 
-module.exports = Server;
+module.exports = Sockets;
